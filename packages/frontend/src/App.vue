@@ -4,7 +4,7 @@
 </script>
 
 <template>
-  <div class="flex flex-col min-h-screen bg-gray-900 text-white">
+  <div class="flex flex-col min-h-screen text-white bg-linear-to-br from-gray-900 via-gray-800 to-indigo-900">
     <AppNavBar />
 
     <main class="grow container mx-auto p-4">
