@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex items-center justify-center min-h-[70vh]">
+    <div class="flex items-center justify-center min-h-[55vh]">
       <div class="text-center">
         <h1 class="text-5xl md:text-7xl font-bold mb-4">
           Hi, I'm Alok Kumar Singh
@@ -24,8 +24,10 @@
         </div>
       </div>
     </div>
-
-    <SkillsGravity class="mt-6"/>
+    <div class="flex justify-center items-center flex-col">
+      <h3 class="font-medium mb-2">My Skills</h3>
+      <Skils />
+    </div>
   </div>
 
 </template>
@@ -33,7 +35,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { PrimaryButton } from '@/components'
-import { SkillsGravity } from '@/components'
+import { Skils } from '@/components'
 
 const router = useRouter()
 

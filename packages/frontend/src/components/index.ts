@@ -5,12 +5,12 @@ import GlassCard from './GlassCard.vue'
 import PrimaryButton from './PrimaryButton.vue'
 import AppNavbar from './AppNavBar.vue'
 import AppFooter from './AppFooter.vue'
-import SkillsGravity from './SkillsGravity.vue'
+import Skils from './Skils.vue'
 
 export {
   GlassCard,
   PrimaryButton,
   AppNavbar,
   AppFooter,
-  SkillsGravity
+  Skils
 }
