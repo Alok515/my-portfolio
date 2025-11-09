@@ -11,7 +11,7 @@
           
           <h2 class="text-2xl font-bold mb-2">{{ project.title }}</h2>
           
-          <p class="text-indigo-100 mb-4 flex-grow">{{ project.description }}</p>
+          <p class="text-indigo-100 mb-4 grow">{{ project.description }}</p>
           
           <div class="flex flex-wrap gap-2 mb-6">
             <span 
