@@ -20,25 +20,23 @@ export class MailService {
     });
   }
 
-  async sendTestEmail() {
-    console.log('Sending test email...');
+  async sendContactFormEmail(name: string, fromEmail: string, message: string) {
+    console.log(`Sending email for: ${name}`);
     try {
       const info = await this.transporter.sendMail({
         from: '"My Portfolio" <no-reply@portfolio.com>',
-        to: 'test@example.com', // Ethereal will catch this
-        subject: 'Test Email from NestJS Mail Service',
-        text: 'This is a plain text test email.',
-        html: '<b>This is an HTML test email.</b>',
+        to: 'kumarsinghalok28@gmail.com',
+        replyTo: fromEmail, // So you can reply to the user
+        subject: `New Portfolio Contact from ${name}`,
+        text: message,
+        html: `<b>From:</b> ${name} (${fromEmail})<br><br><b>Message:</b><p>${message}</p>`,
       });
 
       console.log('Message sent: %s', info.messageId);
-      // You can preview the sent email at this URL
       console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-      return { success: true, url: nodemailer.getTestMessageUrl(info) };
-
+      
     } catch (error) {
-      console.error('Error sending email:', error);
-      return { success: false, error: error.message };
+      console.error('Error sending contact form email:', error);
     }
   }
 }
