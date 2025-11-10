@@ -21,7 +21,8 @@ async function bootstrap() {
       transport: Transport.RMQ,
       options: {
         urls: [RABBITMQ_URL],
-        queue: 'mail_queue', // The name of the queue it will listen to
+        queue: 'mail_queue',
+        noAck: false,
         queueOptions: {
           durable: false,
         },

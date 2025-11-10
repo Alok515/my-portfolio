@@ -34,16 +34,81 @@
                         bringing complex ideas to life. This portfolio is a showcase
                         of my journey and capabilities.
                     </p>
+
+                    <div class="mt-6">
+                        <PrimaryButton @click="showResumeModal = true">
+                            Request My Resume
+                        </PrimaryButton>
+                    </div>
                 </div>
             </div>
         </GlassCard>
+        <div v-if="showResumeModal"
+            class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-md">
+            <GlassCard class="w-full max-w-lg">
+                <h2 class="text-2xl font-bold mb-4">Request Resume</h2>
+                <p class="mb-4">Enter your email, and I'll send you my resume right away.</p>
+
+                <div v-if="requestMessage" :class="isError ? 'text-red-300' : 'text-green-300'" class="mb-4">
+                    {{ requestMessage }}
+                </div>
+
+                <form v-if="!requestSuccess" @submit.prevent="handleResumeRequest" class="space-y-4">
+                    <input type="email" v-model="requesterEmail" placeholder="your.email@example.com" class="w-full p-3 rounded-lg bg-white/10 border border-white/20 
+                 focus:outline-none focus:ring-2 focus:ring-indigo-400" required>
+                    <div class="flex justify-end space-x-4">
+                        <button type="button" @click="showResumeModal = false" class="text-indigo-200 hover:text-white">
+                            Cancel
+                        </button>
+                        <PrimaryButton type="submit" :disabled="isLoading">
+                            {{ isLoading ? 'Sending...' : 'Send' }}
+                        </PrimaryButton>
+                    </div>
+                </form>
+            </GlassCard>
+        </div>
     </div>
 </template>
 
 <script setup lang="ts">
-// Use our clean import from components/index.ts
-import { GlassCard } from '@/components'
-import { ref } from 'vue'
+import { ref } from 'vue';
+import axios from 'axios';
+import { GlassCard, PrimaryButton } from '@/components'; // Import PrimaryButton
 
-const isImageLoaded = ref(false)
+const isImageLoaded = ref(false);
+
+const API_URL = 'http://localhost:3000/api/v1'; // Base API URL
+const showResumeModal = ref(false);
+const requesterEmail = ref('');
+const isLoading = ref(false);
+const requestMessage = ref('');
+const isError = ref(false);
+const requestSuccess = ref(false);
+
+async function handleResumeRequest() {
+  isLoading.value = true;
+  isError.value = false;
+  requestMessage.value = '';
+
+  try {
+    await axios.post(`${API_URL}/contact/request-resume`, { email: requesterEmail.value });
+    
+    isLoading.value = false;
+    requestSuccess.value = true;
+    requestMessage.value = "Success! My resume is on its way to your inbox.";
+    
+    // Close modal after a delay
+    setTimeout(() => {
+      showResumeModal.value = false;
+      requestSuccess.value = false;
+      requesterEmail.value = '';
+      requestMessage.value = '';
+    }, 3000);
+
+  } catch (error) {
+    isLoading.value = false;
+    isError.value = true;
+    requestMessage.value = 'An error occurred. Please try again.';
+  }
+}
 </script>
