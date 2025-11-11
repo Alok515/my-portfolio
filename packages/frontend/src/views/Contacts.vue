@@ -72,7 +72,7 @@ import axios from 'axios';
 import { GlassCard, PrimaryButton } from '@/components';
 
 // This is your backend API URL.
-const API_URL = `${import.meta.env.VITE_API_URL}/contact` || 'http://localhost:3000/api/v1/contact';
+const API_URL = `${import.meta.env.VITE_API_URL}/api/v1/contact` || 'http://localhost:3000/api/v1/contact';
 
 // Form data
 const formData = ref({

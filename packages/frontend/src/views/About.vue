@@ -91,7 +91,7 @@ async function handleResumeRequest() {
   requestMessage.value = '';
 
   try {
-    await axios.post(`${API_URL}/contact/request-resume`, { email: requesterEmail.value });
+    await axios.post(`${API_URL}/api/v1/contact/request-resume`, { email: requesterEmail.value });
     
     isLoading.value = false;
     requestSuccess.value = true;
