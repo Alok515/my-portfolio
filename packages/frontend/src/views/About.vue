@@ -77,7 +77,7 @@ import { GlassCard, PrimaryButton } from '@/components'; // Import PrimaryButton
 
 const isImageLoaded = ref(false);
 
-const API_URL = 'http://localhost:3000/api/v1'; // Base API URL
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api/v1'; // Base API URL
 const showResumeModal = ref(false);
 const requesterEmail = ref('');
 const isLoading = ref(false);

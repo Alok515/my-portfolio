@@ -1,0 +1,38 @@
+# render.yaml
+services:
+  # --- Main API Service ---
+  - type: web # This is a web server
+    name: my-portfolio-backend
+    env: node
+    rootDir: packages/backend
+    buildCommand: pnpm install && pnpm build
+    startCommand: pnpm run start:prod
+    healthCheckPath: /api/v1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: RABBITMQ_URL
+        fromSecret:
+      - key: FRONTEND_URL
+        value: https://your-frontend-url.vercel.app
+
+  # --- Mail Microservice ---
+  - type: worker
+    name: my-portfolio-mail-service
+    env: node
+    rootDir: packages/mail-service
+    buildCommand: pnpm install && pnpm build
+    startCommand: pnpm run start:prod
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: RABBITMQ_URL
+        fromSecret: RABBITMQ_URL
+      - key: MAIL_HOST
+        fromSecret: MAIL_HOST
+      - key: MAIL_PORT
+        fromSecret: MAIL_PORT
+      - key: MAIL_USER
+        fromSecret: MAIL_USER
+      - key: MAIL_PASS
+        fromSecret: MAIL_PASS
