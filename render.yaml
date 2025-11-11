@@ -12,7 +12,7 @@ services:
       - key: NODE_ENV
         value: production
       - key: RABBITMQ_URL
-        fromSecret:
+        fromSecret: RABBITMQ_URL
       - key: FRONTEND_URL
         value: https://my-portfolio-frontend-three-beryl.vercel.app
 
