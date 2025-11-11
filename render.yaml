@@ -14,7 +14,7 @@ services:
       - key: RABBITMQ_URL
         fromSecret:
       - key: FRONTEND_URL
-        value: https://your-frontend-url.vercel.app
+        value: https://my-portfolio-frontend-three-beryl.vercel.app
 
   # --- Mail Microservice ---
   - type: worker
