@@ -96,6 +96,9 @@ async function handleSubmit() {
     // Send the POST request to the NestJS backend
     const response = await axios.post(API_URL, formData.value);
 
+    if (response.status !== 200) {
+      throw new Error('Failed to send message');
+    }
     // Handle success
     successMessage.value = 'Message sent successfully! I will get back to you soon.';
     isLoading.value = false;
