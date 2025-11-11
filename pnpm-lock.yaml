@@ -40,6 +40,9 @@ importers:
       class-validator:
         specifier: ^0.14.2
         version: 0.14.2
+      nodemailer:
+        specifier: ^7.0.10
+        version: 7.0.10
       reflect-metadata:
         specifier: ^0.2.2
         version: 0.2.2
@@ -71,6 +74,9 @@ importers:
       '@types/node':
         specifier: ^22.10.7
         version: 22.19.0
+      '@types/nodemailer':
+        specifier: ^7.0.3
+        version: 7.0.3
       '@types/supertest':
         specifier: ^6.0.2
         version: 6.0.3
